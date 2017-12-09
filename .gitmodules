@@ -1,0 +1,3 @@
+[submodule "rai"]
+	path = rai
+	url = git@github.com:MarcToussaint/rai.git
