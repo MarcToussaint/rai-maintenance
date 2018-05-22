@@ -26,23 +26,28 @@ make runTests
 make -C rai bin
 ```
 
-With the local [blob/master/config.mk] you can control external dependencies.
+With the local [config.mk](config.mk) you can control external dependencies.
 
 
 ## docker
 
 
-In the [blob/master/docker/] path there are scripts to compile RAI and run tests in a docker. To test the whole pipeline, run
-'''
-docker/build-docker.sh
-docker/run-docker.sh
-'''
+In the [docker/](docker/) path there are scripts to compile RAI and run tests in a docker. To test the whole pipeline, run
+```
+cd docker
+./build-docker.sh
+./run-docker.sh
+```
+If you want to test without X, try instead
+```
+./run-docker-withoutX.sh
+```
 
-The [blob/master/docker/Dockerfile] is pretty generic.
+The [Dockerfile](docker/Dockerfile) is pretty generic.
 
-The [blob/master/docker/run-docker.sh] authorizes X-display, mounts also .ssh within the docker to authorize you with github, and then executes run-in-docker.sh.
+The [run-docker.sh](docker/run-docker.sh) authorizes X-display, mounts also .ssh within the docker to authorize you with github, and then executes run-in-docker.sh.
 
-The [blob/master/docker/run-in-docker.sh] is similar to the above 'compile and test'.
+The [run-in-docker.sh](docker/run-in-docker.sh) is similar to the above 'compile and test'.
 
 
 
