@@ -1,16 +1,18 @@
 BASE = rai
 
-src_paths =  $(shell find rai/rai -mindepth 1 -maxdepth 1 -type d -printf "%f ")
+DEPEND = $(shell find rai/rai -mindepth 1 -maxdepth 1 -type d -printf "%f ")
 
 test_paths = $(shell find rai/test -maxdepth 3 -name 'Makefile' -printf "%h ")
 
-build: $(src_paths:%=makeDepend/%) $(test_paths:%=makePath/%)
+build: $(DEPEND:%=inPath_makeLib/%) $(test_paths:%=inPath_make/%)
 
-initUbuntuPackages: $(src_paths:%=initUbuntuPackages/%)
+initUbuntuPackages: $(DEPEND:%=inPath_installUbuntu/%)
 
-clean: $(src_paths:%=cleanPath/%) $(test_paths:%=cleanPath/%)$
+printUbuntu: $(DEPEND:%=inPath_printUbuntuPackages/%) printUbuntuPackages
 
-runTests: $(test_paths:%=makePath/%) $(test_paths:%=runPath/%)
+clean: $(DEPEND:%=inPath_clean/%) $(test_paths:%=inPath_clean/%)$
+
+runTests: $(test_paths:%=inPath_make/%) $(test_paths:%=inPath_run/%)
 
 include $(BASE)/build/generic.mk
 
