@@ -1,6 +1,37 @@
+# Notes on scene and robot model files
+
+## Import
+
+There is ways to import from URDF or similar XML type
+descriptions. There are also some working examples to import
+`gltf`. With Bremen we also managed to import a (full
+kitchen](https://github.com/MarcToussaint/rai-robotModels/tree/master/bremenKitchen)
+from unreal. More info on demand.
+
+## Continuous editing using `kinEdit`
+
+Compile the binary
+```
+cd rai  # into the rai submodule
+make bin
+```
+perhaps export
+```
+echo 'export PATH="$HOME/path-to-rai/bin:$PATH"' >> $HOME/.bashrc
+```
+
+Then you can call `kinEdit someFile.g` from anywhere on any model
+file. This displays and animates the model. While displaying the
+model, edit the file in any other editor and save. `kinEdit` then
+notices that the file changed and reloads and directly displays your
+changes -- or writes parsing errors to the console. You might
+sometimes have to hit enter in the window or restart `kinEdit` on such
+errors. I tell my windows manager to keep the `kinEdit` window "always
+on top".
+
 ## Editing robot model/configuration files
 
-Example: This is a description of a little arm on a table with ball and hook [model.g](https://github.com/MarcToussaint/rai/test/KOMO/switches/model.g))
+Example: This is a description of a little arm on a table with ball and hook ([model.g](https://github.com/MarcToussaint/rai/blob/master/test/KOMO/switches/model.g))
 ```
 frame table1{ shape:ST_ssBox, X:<t(.8 0 .7)>, size:[2. 3. .2 .02], color:[.3 .3 .3] fixed, contact, logical:{ table } }
 
@@ -95,24 +126,3 @@ and `B` tags allow you to split the transformation from `arm1` to
 joint-frame -> `B`transform -> `arm2`frame. To do this it internally
 creates new intermediate frames, so that the data structure is
 strictly a simple frame tree.
-
-## Continuous editing using `kinEdit`
-
-Compile the binary
-```
-cd rai  # into the rai submodule
-make bin
-```
-perhaps export
-```
-echo 'export PATH="$HOME/path-to-rai/bin:$PATH"' >> $HOME/.bashrc
-```
-
-Then you can call `kinEdit someFile.g` from anywhere on any model
-file. This displays and animates the model. While displaying the
-model, edit the file in any other editor and save, `kinEdit` then
-notices that the file changed and reloads and directly displays your
-changes -- or writes parsing errors to the console. You might
-sometimes have to hit enter in the window or restart `kinEdit` on such
-errors. I tell my windows manager to keep the `kinEdit` window "always
-on top".
