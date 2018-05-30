@@ -1,7 +1,7 @@
-# Index to help for rai
+# Help Index for rai
 
-* [rai::Array and arr syntax](arr.md)
-* [Graph and `.g` files](graph.md)
-* [Editing robot model/configuration files](kinEdit.md)
-* [Setting up qtcreator](qtcreator.md) (keywords: IDE, debugging, pretty printer)
+* [rai::Array and arr syntax](arr.md) (tensors, arrays, std::vector)
+* [Graph and `.g` files](graph.md) (Python dictionaries, any-type container, file format, logic)
+* [Editing robot model/configuration files](kinEdit.md)  (URDF, transformations, frame tree)
+* [Setting up qtcreator](qtcreator.md) (IDE, debugging, pretty printer)
 
