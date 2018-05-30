@@ -1,3 +1,6 @@
 # Index to help for rai
 
-* Help with [setting up qtcreator](qtcreator.md)
+* [rai::Array and arr syntax](arr.md)
+* [Graph and `.g` files](graph.md)
+* [Setting up qtcreator](qtcreator.md) (keywords: IDE, debugging, pretty printer)
+
