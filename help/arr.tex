@@ -6,17 +6,22 @@
 
 \usepackage{geometry}
 \geometry{a4paper,hdivide={20mm,*,20mm},vdivide={20mm,*,20mm}}
+\renewcommand{\arraystretch}{1.1}
+\parindent 0pt
+\parskip 3mm
 
 \usepackage{fancyvrb}
 \DefineShortVerb{\@}
 \fvset{numbers=none,xleftmargin=5ex,fontsize=\footnotesize}
 
-\parindent 0pt
-\parskip 3mm
+\pagestyle{empty}
 
 \input{macros}
 
-%\pdflatex
+%  \renewcommand{\familydefault}{\sfdefault}
+\usepackage{color}
+\usepackage{graphicx}
+\pdflatex
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -28,8 +33,6 @@ The @rai::Array@ class a standard tensor storage, wrapping
 @std::Vector@. It's implementation and interface is very similar to
 Octave's Array class. I just provide my recommentation for C++
 operator overloading for easy linear algebra syntax:
-
-~
 
 \noindent
 \begin{tabular}{|p{.2\columnwidth}|p{.35\columnwidth}|p{.35\columnwidth}|}
