@@ -18,6 +18,7 @@ RUN apt-get --yes install \
     libassimp-dev libglew-dev libqhull-dev \
     ros-kinetic-desktop ros-kinetic-object-recognition-msgs \
     ros-kinetic-ar-track-alvar-msgs \
+    ros-kinetic-vrpn-client-ros \
     libpcl-dev
 
 WORKDIR /root
