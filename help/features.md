@@ -113,8 +113,8 @@ Then, given a set
 $\{\phi_1,..,\phi_K\}$ of $K$ features, and a set $\{x_1,..,x_n\}$ of
 $n$ configurations, this defines the mathematical program
 
-$$
+```math
   \min_{x_1,..,x_n} \sum_{k : \rho_k=\texttt{sos}} \phi_k(x_{\pi_k})^T \phi_k(x_{\pi_k})
   ~\text{s.t.}~ \mathop\forall_{k : \rho_k=\texttt{ineq}} \phi_k(x_{\pi_k}) \le 0 ~,\quad
-  \mathop\forall_{k : \rho_k=\texttt{eq}} \phi_k(x_{\pi_k}) = 0 ~,\quad
-$$
+  \mathop\forall_{k : \rho_k=\texttt{eq}} \phi_k(x_{\pi_k}) = 0 ~.
+```
