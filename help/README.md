@@ -5,4 +5,5 @@
 * [Graph and `.g` files](graph.md) (Python dictionaries, any-type container, file format, logic)
 * [Editing robot model/configuration files](kinEdit.md)  (URDF, transformations, frame tree)
 * [Setting up qtcreator](qtcreator.md) (IDE, debugging, pretty printer)
+* [Installing certain packages locally from source](localSourceInstalls.md) (OpenCV)
 
