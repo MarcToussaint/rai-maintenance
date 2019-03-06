@@ -2,6 +2,7 @@
 
 OpenCV:
 ```
+mkdir -p ~/git
 cd ~/git
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
@@ -17,3 +18,12 @@ cmake \
 make
 make install
 ```
+
+Bullet:
+```
+mkdir -p ~/git
+cd ~/git https://github.com/bulletphysics/bullet3.git
+cd bullet3
+./build_cmake_pybullet_double.sh
+```
+
