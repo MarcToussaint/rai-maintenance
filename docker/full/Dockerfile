@@ -22,5 +22,3 @@ RUN apt-get --yes install \
     libpcl-dev
 
 WORKDIR /root
-
-RUN echo 'source ~/bashrc' >> ~/.bashrc

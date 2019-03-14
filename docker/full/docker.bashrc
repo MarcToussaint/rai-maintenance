@@ -1,4 +1,4 @@
-export PS1='DOCKER \u@\h:\w> '
+export PS1='RAI-DOCKER \u@\h:\w> '
 
 export MAKEFLAGS="-j4 -k"
 

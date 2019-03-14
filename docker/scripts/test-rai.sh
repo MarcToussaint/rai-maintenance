@@ -12,9 +12,6 @@ cd $PACKAGE
 git submodule init
 git submodule update
 
-#this deactivates several dependencies:
-cp build/config.mk.default build/config.mk
-
 make -j1 initUbuntuPackages
 make -j4
 make runTests

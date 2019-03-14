@@ -2,19 +2,16 @@
 
 thispath=$(builtin cd "`dirname "${BASH_SOURCE[0]}"`" > /dev/null && pwd)
 
-#see http://wiki.ros.org/docker/Tutorials/GUI
-#https://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container
+# #see http://wiki.ros.org/docker/Tutorials/GUI
+# #https://stackoverflow.com/questions/16296753/can-you-run-gui-apps-in-a-docker-container
 
-##WARNING! UNSAFE VERSION
-# xhost +local:root
-## later call:
-# xhost -local:root
+# XSOCK=/tmp/.X11-unix
+# XAUTH=/tmp/.docker.xauth
+# touch $XAUTH
+# xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH # # nmerge -
+# chmod 755 $XAUTH
 
-XSOCK=/tmp/.X11-unix
-XAUTH=/tmp/.docker.xauth
-touch $XAUTH
-xauth nlist $DISPLAY | sed -e 's/^..../ffff/' | xauth -f $XAUTH nmerge -
-chmod 755 $XAUTH
+xhost +local:root
 
 docker run -it \
        --volume="$thispath/../..:/root/local" \
@@ -23,7 +20,10 @@ docker run -it \
        --volume="$HOME/.ssh:/root/.ssh:ro" \
        --env="DISPLAY" \
        --network host \
-       -v $XSOCK:$XSOCK \
-       -v $XAUTH:$XAUTH \
-       -e XAUTHORITY=$XAUTH \
-       rai-maintenance-minimal /bin/bash -C /root/local/docker/minimal/run-in-docker.sh
+       rai-maintenance-minimal /bin/bash -C $1
+
+#       -v $XSOCK:$XSOCK \
+#       -v $XAUTH:$XAUTH \
+#       -e XAUTHORITY=$XAUTH \
+
+xhost -local:root
