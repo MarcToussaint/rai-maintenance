@@ -18,9 +18,9 @@ I chose `~/opt/qtcreator-4.6.1` as installation path, added a symbolic link
 ```
 mkdir -p ~/opt/bin
 cd ~/opt/bin
-ln -s /home/mtoussai/opt/qtcreator-4.6.1/bin/qtcreator
+ln -s ~/opt/qtcreator-4.6.1/bin/qtcreator.sh
 ```
-and `export PATH="/home/opt/bin:$PATH"` in my `.bashrc`
+and `export PATH="$HOME/opt/bin:$PATH"` in my `.bashrc`
 
 ### New project
 
@@ -30,22 +30,23 @@ File -> Sessions -> Session Manager
 ```
 and mark `Restore last session on startup`.
 
-Open any RAI path with a `Makefile` using
+Open any `rai` path with a `Makefile` using
 ```
 New (Ctrl-N) -> Import Project -> Import Existing Project
 ```
 choose the path and "project name".
 
-In the "project name".includes, add the `rai/rai` (with relative `../` as needed) path to parse sources. Perhaps also add `/opt/ros/kinetic/include` and alike.
+### Source Parsing & Browsing
 
+In the "project name".includes, add the `rai/rai` (with relative `../` as needed) path to parse sources. Perhaps also add `/opt/ros/kinetic/include` and alike.
 
 ### Debugging helpers
 
-To enable the RAI specific debugging helpers: In
+To enable the `rai` specific debugging helpers: In
 ```
   Tools -> Options -> Debugger -> Locals & Expressions
 ```
-add `/home/mtoussai/git/rai/build/qtcreator_debuggingHelpers.py` (In old versions, create a symbolic link `~/.gdbinit` to this file.)
+add `$HOME/git/rai/build/qtcreator_debuggingHelpers.py` (In old versions, create a symbolic link `~/.gdbinit` to this file.)
 
 In `Tools -> Options -> Debugger -> GDB` disable `Load system GDB pretty printers`
 
