@@ -12,7 +12,7 @@ cd $PACKAGE
 git submodule init
 git submodule update
 
-make -j1 initUbuntuPackages
+make -j1 installUbuntuAll
 make -j4
 make runTests
 
