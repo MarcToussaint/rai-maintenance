@@ -8,7 +8,7 @@ cd $HOME/git
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 cd opencv
-#git checkout -b 4.0.1
+git checkout -b 4.0.1
 mkdir build
 cd build
 cmake \
