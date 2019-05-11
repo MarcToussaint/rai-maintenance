@@ -42,3 +42,25 @@ make -j $(command nproc)
 make install
 ```
 
+PhysX:
+```
+mkdir -p $HOME/git
+cd $HOME/git
+git clone https://github.com/NVIDIAGameWorks/PhysX.git
+cd PhysX
+git checkout 3.4
+cd PhysX_3.4/Source/compiler/linux64
+make release
+
+mkdir -p $HOME/opt/physx3.4/lib
+mkdir -p $HOME/opt/physx3.4/include/physx
+cd $HOME/git/PhysX
+cp PhysX_3.4/Bin/linux64/* $HOME/opt/physx3.4/lib
+cp PhysX_3.4/Lib/linux64/* $HOME/opt/physx3.4/lib
+cp PxShared/bin/linux64/* $HOME/opt/physx3.4/lib
+cp -R PhysX_3.4/Include/* $HOME/opt/physx3.4/include/physx
+cp -R PxShared/include/* $HOME/opt/physx3.4/include/physx
+
+# to save disk space, delete the repo again
+# rm -Rf $HOME/git/PhysX
+```
