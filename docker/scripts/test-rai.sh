@@ -9,11 +9,13 @@ git clone git@github.com:MarcToussaint/$PACKAGE.git
 cd $PACKAGE
 #sed 's/git@github\.com:MarcToussaint/https:\/\/github\.com\/MarcToussaint/g' .gitmodules > tmp
 #mv tmp .gitmodules
+git checkout marc
+
 git submodule init
 git submodule update
 
 make -j1 installUbuntuAll
 make -j4
-make runTests
+#make runTests
 
 $SHELL

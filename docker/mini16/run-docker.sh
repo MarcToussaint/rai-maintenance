@@ -20,6 +20,7 @@ docker run -it \
        --volume="$HOME/.ssh:/root/.ssh:ro" \
        --env="DISPLAY" \
        --network host \
+       --device /dev/input \
        rai-maintenance-minimal /bin/bash -C $1
 
 #       -v $XSOCK:$XSOCK \

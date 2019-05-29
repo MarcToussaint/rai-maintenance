@@ -12,6 +12,7 @@ docker run -it \
        --env="DISPLAY" \
        --network host \
        --publish 11311:11311 \
+       --device /dev/input \
        rai-maintenance-full /bin/bash -C $1
 
 xhost -local:root
