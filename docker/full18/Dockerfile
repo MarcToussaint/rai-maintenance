@@ -15,10 +15,9 @@ RUN apt-get --yes update
 
 # install full dependencies
 RUN apt-get --yes install \
-    g++ liblapack-dev libf2c2-dev gnuplot libjsoncpp-dev libx11-dev \
+    g++ gnuplot liblapack-dev libf2c2-dev libeigen3-dev \
     libx11-dev libglfw3-dev libglew-dev freeglut3-dev graphviz-dev \
-    libann-dev \
-    libassimp-dev libglew-dev libqhull-dev \
+    libjsoncpp-dev libassimp-dev libqhull-dev libann-dev \
     ros-melodic-desktop ros-melodic-object-recognition-msgs ros-melodic-ar-track-alvar-msgs \
     libpcl-dev
 

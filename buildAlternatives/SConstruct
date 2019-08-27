@@ -1,0 +1,11 @@
+basePath = '../rai/'
+
+core = SConscript('SConstruct.Core', variant_dir='build')
+
+env = Environment(CXXFLAGS = Split('-g -O3 -Wall -Wno-terminate -fPIC -std=c++14'))
+
+env.Append(LINKFLAGS = Split('-Wl,-rpath,build'))
+
+env['CPPPATH'] = Split('../rai/rai')
+
+env.Program('test.exe', basePath+'test/Core/util/main.cpp', LIBS=['Core', 'rt'], LIBPATH='build' )

@@ -1,0 +1,15 @@
+srcPath = '../../rai/rai/'
+
+env = Environment(CXXFLAGS = Split('-g -O3 -Wall -Wno-terminate -fPIC -std=c++14'))
+env.Append(CXXFLAGS = ['-DRAI_ROOT_PATH="\\"/home/mtoussai/git/rai-maintenance/rai/rai/Core/../..\\""'])
+env.Append(CXXFLAGS = ['-DRAI_X11'])
+env.Append(CXXFLAGS = ['-DRAI_Lapack'])
+env.Append(CXXFLAGS = ['-DRAI_EIGEN'])
+env.Append(CXXFLAGS = ['-DRAI_PTHREAD'])
+
+
+env['CPPPATH'] = Split('/lapack/include /opt/ros/kinetic/include/ /usr/include/pcl-1.7/ /usr/include/eigen3 ../../rai')
+
+# LDFLAGS = -L/home/mtoussai/git/rai-maintenance/rai/lib -L/usr/local/lib
+
+program_list = env.SharedLibrary('Core', Glob(srcPath + 'Core/*.cpp'), LIBS=Split('jsoncpp X11 lapack blas pthread rt'))
