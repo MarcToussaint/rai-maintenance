@@ -15,6 +15,7 @@ xhost +local:root
 
 docker run -it \
        --volume="$thispath/../..:/root/local" \
+       --volume="$HOME/:/root/home" \
        --volume="$thispath/docker.bashrc:/root/.bash_aliases" \
        --volume="$HOME/.gitconfig:/root/.gitconfig:ro" \
        --volume="$HOME/.ssh:/root/.ssh:ro" \

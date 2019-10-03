@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get --yes update
 RUN apt-get --yes install \
-    git sudo g++ make gnupg \
+    git sudo g++ make gnupg gdb \
     x11-apps mesa-utils \
     nano emacs terminator lsb-release gnuplot
 
@@ -15,7 +15,7 @@ RUN apt-get --yes update
 
 # install full dependencies
 RUN apt-get --yes install \
-    g++ gnuplot liblapack-dev libf2c2-dev libeigen3-dev \
+    liblapack-dev libf2c2-dev libeigen3-dev \
     libx11-dev libglfw3-dev libglew-dev freeglut3-dev graphviz-dev \
     libjsoncpp-dev libassimp-dev libqhull-dev libann-dev \
     ros-melodic-desktop ros-melodic-object-recognition-msgs ros-melodic-ar-track-alvar-msgs \

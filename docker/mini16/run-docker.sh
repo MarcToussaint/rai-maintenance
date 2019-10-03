@@ -15,13 +15,14 @@ xhost +local:root
 
 docker run -it \
        --volume="$thispath/../..:/root/local" \
+       --volume="$HOME/:/root/home" \
        --volume="$thispath/docker.bashrc:/root/.bash_aliases" \
        --volume="$HOME/.gitconfig:/root/.gitconfig:ro" \
        --volume="$HOME/.ssh:/root/.ssh:ro" \
        --env="DISPLAY" \
        --network host \
        --device /dev/input \
-       rai-maintenance-minimal /bin/bash -C $1
+       rai-maintenance-mini16 /bin/bash -C $1
 
 #       -v $XSOCK:$XSOCK \
 #       -v $XAUTH:$XAUTH \

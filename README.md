@@ -6,6 +6,8 @@ submodule and provides tools for maintenance:
 * Testing the whole install/compile pipeline from fresh
 * Testing in docker
 * Maintenance of code formatting and copyright headers
+* Standardized installs of opencv, bullet, physx from source
+* A bit documentation of some rai structures
 
 ## local install and test
 
@@ -34,20 +36,21 @@ With the local [config.mk](config.mk) you can control external dependencies.
 
 In the [docker/](docker/) path there are scripts to compile RAI and run tests in a docker. To test the whole pipeline, run
 ```
-cd docker
+cd docker/mini18
 ./build-docker.sh
-./run-docker.sh
-```
-If you want to test without X, try instead
-```
-./run-docker-withoutX.sh
+./run-docker.sh /root/local/docker/scripts/test-rai.sh
 ```
 
-The [Dockerfile](docker/Dockerfile) is pretty generic.
+Testing rai-python:
+```
+./run-docker.sh /root/local/docker/scripts/test-rai-python.sh
+```
 
-The [run-docker.sh](docker/run-docker.sh) authorizes X-display, mounts also .ssh within the docker to authorize you with github, and then executes run-in-docker.sh.
+The [Dockerfile](docker/mini18/Dockerfile) is pretty generic.
 
-The [run-in-docker.sh](docker/run-in-docker.sh) is similar to the above 'compile and test'.
+The [run-docker.sh](docker/mini18/run-docker.sh) authorizes X-display, mounts also .ssh within the docker to authorize you with github, and then executes run-in-docker.sh.
+
+The [run-in-docker.sh](docker/scripts/test-rai.sh) is similar to the above 'compile and test'.
 
 
 
