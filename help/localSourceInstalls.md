@@ -64,3 +64,25 @@ cp -R PxShared/include/* $HOME/opt/physx3.4/include/physx
 # to save disk space, delete the repo again
 # rm -Rf $HOME/git/PhysX
 ```
+
+```
+mkdir -p $HOME/git
+mkdir -p $HOME/opt
+cd $HOME/git
+git clone https://github.com/IntelRealSense/librealsense.git
+cd librealsense
+mkdir -p build
+cd build
+cmake \
+ -DCMAKE_INSTALL_PREFIX=$HOME/opt \
+ -DCMAKE_BUILD_TYPE=Release \
+ ..
+make -j $(command nproc)
+make install
+```
+
+OMPL:
+
+sudo apt-get install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev libboost-serialization-dev
+
+sudo apt-get libfcl-dev

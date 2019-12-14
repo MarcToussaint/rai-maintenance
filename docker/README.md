@@ -1,15 +1,15 @@
 ## Testing repos within a docker:
 
-Testing rai in a minimal docker:
+Testing rai in a docker:
 ```
-cd minimal
+cd full18
 ./build-docker.sh
 ./run-docker.sh /root/local/docker/scripts/test-rai.sh
 ```
 
 Testing rai-python:
 ```
-cd minimal
+cd full18
 ./build-docker.sh
 ./run-docker.sh /root/local/docker/scripts/test-rai-python.sh
 ```

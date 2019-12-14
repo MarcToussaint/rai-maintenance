@@ -1,84 +1,67 @@
 cmake_minimum_required(VERSION 3.4)
-project(test_KOMO_komo)
 
-add_compile_options(-O3 -Wall -fPIC -std=c++0x)
+project(test_KOMO)
+
+add_compile_options(-O3 -Wall -fPIC -std=c++0x -Wno-terminate)
 
 add_definitions(
   -DRAI_ROOT_PATH=\"${CMAKE_SOURCE_DIR}/rai\"
   -DRAI_X11 -DRAI_LAPACK -DRAI_EIGEN -DRAI_PTHREAD -DRAI_GL
   -DRAI_GLFW -DRAI_QHULL -DRAI_ASSIMP -DNO_CYCLE_DETECTION
-)
+  -DRAI_extern_SWIFT -DRAI_extern_GJK -DRAI_extern_Lewiner
+  -DRAI_extern_ply -DRAI_extern_ccd
+  )
 
 include_directories(
   /usr/include/eigen3
   ../rai/rai
-)
+  include
+  )
 
+link_directories(
+  #  /opt/ros/kinetic/lib
+  build
+  )
+
+file(GLOB SRC_Core ../rai/rai/Core/*.cpp)
+file(GLOB SRC_Algo ../rai/rai/Algo/*.cpp)
+file(GLOB SRC_Optim ../rai/rai/Optim/*.cpp)
+file(GLOB SRC_Geo ../rai/rai/Geo/*.cpp)
+file(GLOB SRC_GeoExtern ../rai/rai/Geo/*/*.c)
+file(GLOB SRC_Gui ../rai/rai/Gui/*.cpp)
 file(GLOB SRC_Kin ../rai/rai/Kin/*.cpp)
+file(GLOB SRC_KinSwift ../rai/rai/Kin/SWIFT/*.cpp)
+file(GLOB SRC_KOMO ../rai/rai/KOMO/*.cpp)
 
-add_executable(komo
+add_library(raiKOMO SHARED
 
-../rai/test/KOMO/komo/main.cpp
+  ${SRC_Core}
+  ${SRC_Optim}
+  ${SRC_Geo}
+  ${SRC_GeoExtern}
+  ${SRC_Gui}
+  ${SRC_Kin}
+  ${SRC_KinSwift}
+  ${SRC_KOMO}
 
-${SRC_Kin}
+  ../rai/rai/Algo/spline.cpp
+  ../rai/rai/Algo/ann.cpp
+  ../rai/rai/Algo/algos.cpp
+  
+  ../rai/rai/Plot/plot.cpp
 
-../rai/rai/Plot/plot.cpp
+  ../rai/rai/Geo/Lewiner/MarchingCubes.cpp
 
-../rai/rai/KOMO/komo.cpp
-../rai/rai/KOMO/pathTools.cpp
-../rai/rai/KOMO/objective.cpp
+  )
 
-../rai/rai/Algo/MLcourse.cpp
-../rai/rai/Algo/ann.cpp
-../rai/rai/Algo/algos.cpp
-../rai/rai/Algo/spline.cpp
+target_link_libraries(raiKOMO
+  jsoncpp lapack blas assimp glfw GLEW glut GLU GL X11 qhull pthread rt
+  )
 
-../rai/rai/Core/util.cpp
-../rai/rai/Core/thread.cpp
-../rai/rai/Core/array.cpp
-../rai/rai/Core/graph.cpp
+add_executable(testKOMO
+  ../rai/test/KOMO/tutorial/main.cpp
+  )
 
-../rai/rai/Geo/qhull.cpp
-../rai/rai/Geo/pairCollision.cpp
-../rai/rai/Geo/fclInterface.cpp
-../rai/rai/Geo/mesh.cpp
-../rai/rai/Geo/mesh_readAssimp.cpp
-../rai/rai/Geo/geo.cpp
-
-../rai/rai/Gui/viewer.cpp
-../rai/rai/Gui/graphview.cpp
-../rai/rai/Gui/opengl.cpp
-
-../rai/rai/Optim/lagrangian.cpp
-../rai/rai/Optim/KOMO_Problem.cpp
-../rai/rai/Optim/newton.cpp
-../rai/rai/Optim/constrained.cpp
-../rai/rai/Optim/gradient.cpp
-../rai/rai/Optim/Graph_Problem.cpp
-../rai/rai/Optim/convert.cpp
-../rai/rai/Optim/GraphOptim.cpp
-../rai/rai/Optim/optimization.cpp
-
-../rai/rai/Geo/GJK/gjk.c
-../rai/rai/Geo/ply/ply.c
-../rai/rai/Geo/ccd/polytope.c
-../rai/rai/Geo/ccd/support.c
-../rai/rai/Geo/ccd/ccd.c
-../rai/rai/Geo/ccd/mpr.c
-../rai/rai/Geo/ccd/vec3.c
-
-../rai/rai/Geo/Lewiner/MarchingCubes.cpp
-
-../rai/rai/Kin/SWIFT/fileio.cpp
-../rai/rai/Kin/SWIFT/lut.cpp
-../rai/rai/Kin/SWIFT/mesh.cpp
-../rai/rai/Kin/SWIFT/mesh_utils.cpp
-../rai/rai/Kin/SWIFT/object.cpp
-../rai/rai/Kin/SWIFT/pair.cpp
-../rai/rai/Kin/SWIFT/pqueue.cpp
-../rai/rai/Kin/SWIFT/scene.cpp
-
-)
-
-target_link_libraries(komo jsoncpp lapack blas assimp glfw GLEW glut GLU GL X11 qhull pthread rt)
-
+target_link_libraries(testKOMO
+  raiKOMO
+  )
