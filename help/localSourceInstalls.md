@@ -65,9 +65,11 @@ cp -R PxShared/include/* $HOME/opt/physx3.4/include/physx
 # rm -Rf $HOME/git/PhysX
 ```
 
+librealsense:
 ```
 mkdir -p $HOME/git
 mkdir -p $HOME/opt
+sudo apt install libusb-1.0-0-dev libglfw3-dev libgtk-3-dev
 cd $HOME/git
 git clone https://github.com/IntelRealSense/librealsense.git
 cd librealsense
@@ -81,8 +83,68 @@ make -j $(command nproc)
 make install
 ```
 
+libfranka:
+```
+mkdir -p $HOME/git
+sudo apt install libpoco-dev libeigen3-dev
+cd $HOME/git
+git clone --recursive https://github.com/frankaemika/libfranka
+cd libfranka
+mkdir build
+cmake \
+ -DCMAKE_INSTALL_PREFIX=$HOME/opt \
+ ..
+make -j $(command nproc)
+make install
+```
+
 OMPL:
 
-sudo apt-get install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev libboost-serialization-dev
+sudo apt install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev libboost-serialization-dev
 
-sudo apt-get libfcl-dev
+sudo apt libfcl-dev
+
+
+OpenImageIO:
+```
+sudo apt install libfreetype6-dev libboost-thread-dev
+mkdir -p $HOME/git
+cd $HOME/git
+git clone https://github.com/OpenImageIO/oiio.git
+cd oiio
+git checkout RB-2.0
+mkdir build
+cmake ..
+cmake \
+	-DBUILD_DOCS=0 -DBUILD_MISSING_PYBIND11=0 -DBUILD_TESTING=0 \
+	-DUSE_DICOM=0 -DUSE_OPENGL=0 USE_QT=0 -DUSE_PYTHON=0 \
+	-DEMBEDPLUGINS=0 \
+	-DOIIO_BUILD_TESTS=0 -DOIIO_BUILD_TOOLS=0 \
+	-DCMAKE_INSTALL_PREFIX=$HOME/opt \
+	..
+make -j $(command nproc)
+make install
+```
+
+Cycles renderer (install OpenImageIO first)
+```
+sudo apt install libboost-regex-dev
+mkdir -p $HOME/git
+cd $HOME/git
+git clone git://git.blender.org/cycles.git
+cd cycles
+mkdir build
+cd build
+cmake \
+	-DOPENIMAGEIO_INCLUDE_DIR=$HOME/opt/include \
+	-DCMAKE_INSTALL_PREFIX=$HOME/opt \
+	..
+make -j $(command nproc)
+```
+test an example:
+```
+cd $HOME/git/cycles/examples
+export OIIO_LIBRARY_PATH=$HOME/opt/lib
+../build/bin/cycles --samples 10 --output ./image.png scene_monkey.xml
+```
+

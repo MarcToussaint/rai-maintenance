@@ -2,12 +2,12 @@
 
 Warning: The in code documentation is not well maintained in rai at
 all. When coding we typically code-browse into headers and read
-comments their directly. But at least for the older parts of the code,
+comments there directly. But at least for the older parts of the code,
 the doxygen comments might still be useful.
 
 * To generate the API, first install doxygen
 ```
-sudo apt-get doxygen doxygen-gui
+sudo apt install doxygen doxygen-gui
 ```
 * Call the wizard `doxywizard &`
 * Select `rai/rai` as working directory (e.g. `$HOME/git/robotics-course/rai/rai`)
