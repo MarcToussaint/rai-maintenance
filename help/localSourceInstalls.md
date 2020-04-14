@@ -1,6 +1,6 @@
-## installing packages locally (~/opt) from source
+# installing packages locally (~/opt) from source
 
-OpenCV:
+## OpenCV
 ```
 mkdir -p $HOME/git
 mkdir -p $HOME/opt
@@ -20,7 +20,7 @@ make -j $(command nproc)
 make install
 ```
 
-Bullet:
+## Bullet
 ```
 mkdir -p $HOME/git
 mkdir -p $HOME/opt
@@ -42,7 +42,7 @@ make -j $(command nproc)
 make install
 ```
 
-PhysX:
+## PhysX
 ```
 mkdir -p $HOME/git
 cd $HOME/git
@@ -65,7 +65,7 @@ cp -R PxShared/include/* $HOME/opt/physx3.4/include/physx
 # rm -Rf $HOME/git/PhysX
 ```
 
-librealsense:
+## librealsense
 ```
 mkdir -p $HOME/git
 mkdir -p $HOME/opt
@@ -83,7 +83,7 @@ make -j $(command nproc)
 make install
 ```
 
-libfranka:
+## libfranka
 ```
 mkdir -p $HOME/git
 sudo apt install libpoco-dev libeigen3-dev
@@ -98,14 +98,15 @@ make -j $(command nproc)
 make install
 ```
 
-OMPL:
-
+## OMPL
+```
 sudo apt install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev libboost-serialization-dev
 
 sudo apt libfcl-dev
+#then OMPL... todo
+```
 
-
-OpenImageIO:
+## OpenImageIO
 ```
 sudo apt install libfreetype6-dev libboost-thread-dev
 mkdir -p $HOME/git
@@ -126,7 +127,7 @@ make -j $(command nproc)
 make install
 ```
 
-Cycles renderer (install OpenImageIO first)
+## Cycles renderer (install OpenImageIO first)
 ```
 sudo apt install libboost-regex-dev
 mkdir -p $HOME/git

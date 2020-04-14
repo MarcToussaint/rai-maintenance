@@ -6,15 +6,22 @@
 # etc
 #
 
-PNG = 0
+# only UNCOMMENT some of the following lines
+# (they are already set =1 in the components that refer to them)
+
+#OPTIM = debug
+#OPTIM = fast_debug
+#GL = 0
 FCL = 0
 ODE = 0
-PHYSX = 0
-BULLET = 0
+#PHYSX = 0
+#BULLET = 0
 G4 = 0
 PCL = 0
-PYBIND = 0
+#PYBIND = 0
 OPENCV = 0
 GTK = 0
 ROS = 0
-ROS_VERSION = kinetic
+ROS_VERSION = melodic
+#EIGEN = 0
+CERES = 0
