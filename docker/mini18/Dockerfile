@@ -1,8 +1,10 @@
 FROM ubuntu:18.04
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get --yes update
 RUN apt-get --yes install \
-    git sudo g++ make gnupg \
+    apt-utils git sudo g++ make gnupg gdb cmake \
     x11-apps mesa-utils \
     nano emacs terminator lsb-release gnuplot
 

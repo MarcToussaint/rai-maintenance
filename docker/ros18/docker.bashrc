@@ -2,8 +2,8 @@ export PS1='RAI-DOCKER \u@\h:\w> '
 
 export MAKEFLAGS="-j4 -k"
 
-#export ROSDIR=/opt/ros/kinetic
-#source ${ROSDIR}/setup.bash
+export ROSDIR=/opt/ros/kinetic
+source ${ROSDIR}/setup.bash
 
 alias ls="ls -F --color"
 alias ll="ls -lFh --color"
