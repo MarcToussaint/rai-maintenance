@@ -7,8 +7,6 @@ PACKAGE=rai
 git clone git@github.com:MarcToussaint/$PACKAGE.git
 
 cd $PACKAGE
-#sed 's/git@github\.com:MarcToussaint/https:\/\/github\.com\/MarcToussaint/g' .gitmodules > tmp
-#mv tmp .gitmodules
 git checkout marc
 
 git submodule init

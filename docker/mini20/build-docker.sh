@@ -1,6 +1,6 @@
 #/bin/sh
 
 docker build \
-       --tag rai-mini18 \
+       --tag rai-mini20 \
        --network host \
        -f Dockerfile . --no-cache

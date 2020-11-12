@@ -22,7 +22,7 @@ docker run -it \
        --env="DISPLAY" \
        --network host \
        --device /dev/input \
-       rai-mini18 /bin/bash -C $1
+       rai-mini20 /bin/bash -C $1
 
 #       -v $XSOCK:$XSOCK \
 #       -v $XAUTH:$XAUTH \
