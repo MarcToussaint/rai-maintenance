@@ -19,7 +19,7 @@ RUN apt-get --yes install \
 ##########################################################
 # Install python packages:
 
-RUN pip3 install --user pybind11 jupyter matplotlib
+RUN pip3 install --user pybind11 jupyter nbconvert matplotlib
 
 ENV PATH="${PATH}:/root/.local/bin"
 
@@ -32,10 +32,7 @@ ENV REPO="optimization-course"
 # clone
 RUN \
 cd $HOME && \
-git clone https://github.com/MarcToussaint/$REPO && \
-cd $REPO && \
-git submodule init && \
-git submodule update
+git clone --recursive https://github.com/MarcToussaint/$REPO
 
 # install ubuntu
 RUN make -C $HOME/$REPO -j1 APTGETYES="--yes" installUbuntuAll

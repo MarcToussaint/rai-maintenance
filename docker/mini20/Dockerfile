@@ -1,19 +1,30 @@
 FROM ubuntu:20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV HOME="/root"
+ENV TERM="xterm"
+
+##########################################################
+# basic ubuntu packages
 
 RUN apt-get --yes update
 RUN apt-get --yes install \
-    apt-utils git sudo g++ make gnupg gdb cmake \
+    apt-utils git sudo build-essential gnupg gdb cmake \
     x11-apps mesa-utils \
-    nano emacs terminator lsb-release gnuplot
+    emacs terminator lsb-release gnuplot
 
 # this is only to speed up
 # the make installUbuntuAll would do the same in the test shell...
 
 RUN apt-get --yes install \
-     liblapack-dev libf2c2-dev libeigen3-dev \
-     libx11-dev libglfw3-dev libglew-dev freeglut3-dev graphviz-dev \
-     libjsoncpp-dev libassimp-dev libqhull-dev libann-dev 
+libx11-dev libglfw3-dev libglew-dev freeglut3-dev \
+libassimp-dev libglew-dev freeglut3-dev libqhull-dev \
+libann-dev liblapack-dev libf2c2-dev \
+g++ make gnupg gdb cmake gnuplot libjsoncpp-dev libx11-dev liblapack-dev libf2c2-dev
+
+##########################################################
 
 WORKDIR /root
+
+RUN printf "\necho '*** Welcome to the mini20 docker! ***'" >> $HOME/.bashrc
+
