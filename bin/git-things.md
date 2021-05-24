@@ -48,3 +48,7 @@ du -sh .
 
 git remote add lis git@gitlab.tubit.tu-berlin.de:marc-private/write.git
 git push lis --all
+
+
+
+git filter-repo --strip-blobs-bigger-than 1M
