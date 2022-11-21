@@ -12,23 +12,27 @@
 #OPTIM = debug
 #OPTIM = fast_debug
 
+RAI_CMAKE = 1
+
 #GL = 0
 OPENCV = 0
-#GRAPHVIZ = 0
+GRAPHVIZ = 0
 GTK = 0
 G4 = 0
 #PYBIND = 0
 #PNG = 0
 
 #EIGEN = 0
-#CERES = 0
-#NLOPT = 0
-#IPOPT = 0
+CERES = 0
+NLOPT = 0
+IPOPT = 0
+ANN = 0
+#ASSIMP = 0
 
 #FCL = 0
 PCL = 0
 ODE = 0
-#PHYSX = 0
+PHYSX = 0
 BULLET = 0
 #BULLET_UBUNTU = 0
 
