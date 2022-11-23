@@ -28,7 +28,7 @@ git clone --single-branch -b v1.6.39 https://github.com/glennrp/libpng.git
 #RUN cd $HOME/git/CLAPACK; mkdir -p build; cd build; cmake -E env CFLAGS="-fPIC" cmake ..; make; cp SRC/liblapack.a F2CLIBS/libf2c/libf2c.a BLAS/SRC/libblas.a /usr/local/lib; cd ..; cp INCLUDE/*.h /usr/local/include; cd /usr/local/include; ln -s blaswrap.h cblas.h
 RUN cd $HOME/git/eigen; mkdir -p build; cd build; cmake ..; make install
 RUN cd $HOME/git/jsoncpp; mkdir -p build; cd build; cmake ..; make install
-RUN cd $HOME/git/libpng; ./configure CFLAGS='-fPIC'; make install
+#RUN cd $HOME/git/libpng; ./configure CFLAGS='-fPIC'; make install
 RUN cd $HOME/git/qhull; mkdir -p tmp; cd tmp; cmake -E env CFLAGS="-fPIC" CXXFLAGS="-fPIC"  cmake ..; make install; cd /usr/local/lib; ln -s libqhullstatic.a libqhull.a; cd /usr/local/include; ln -s libqhull qhull
 RUN cd $HOME/git/libccd; mkdir -p build; cd build; cmake -E env CFLAGS="-fPIC" cmake -DBUILD_SHARED_LIBS=ON ..; make; make install
 RUN cd $HOME/git/libccd/build; cmake -E env CFLAGS="-fPIC" cmake -DBUILD_SHARED_LIBS=OFF ..; make install
@@ -36,12 +36,25 @@ RUN cd $HOME/git/fcl; mkdir -p build; cd build; cmake -DFCL_STATIC_LIBRARY=ON ..
 RUN cd $HOME/git; wget https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.tgz; tar xvzf glew-2.2.0.tgz; cd glew-2.2.0; make install
 RUN cd $HOME/git/glfw; mkdir -p build; cd build; cmake ..; make install
 RUN cd $HOME/git/assimp; mkdir -p build; cd build; cmake -DASSIMP_BUILD_ZLIB=ON -DBUILD_SHARED_LIBS=OFF ..; make install
-RUN cd $HOME/git/pybind11; mkdir -p build; cd build; cmake -DPYBIND11_TEST=OFF ..; make install
 
-RUN cd /usr/bin && ln -s /usr/local/bin/python3.7 python3
 
-RUN cd $HOME/git; git clone --single-branch -b marc https://github.com/MarcToussaint/rai.git
-#RUN cd $HOME/git/rai; make unityAll; cp $HOME/local/CMakeLists.txt .; mkdir -p build; cd build; cmake ..; make libry
+RUN cd $HOME/git && \
+git clone --single-branch -b 3.08 https://github.com/bulletphysics/bullet3.git
+
+RUN cd $HOME/git/bullet3; mkdir -p build; cd build; \
+  cmake -E env CFLAGS="-fPIC" CXXFLAGS="-fPIC" cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_UNIT_TESTS=OFF -DBUILD_OPENGL3_DEMOS=OFF -DBUILD_BULLET2_DEMOS=OFF -DBUILD_EXTRAS=OFF -DUSE_DOUBLE_PRECISION=ON ..; make install
+
+RUN yum -y install libpng-devel
+
+RUN python3.7 -m pip install pybind11
+RUN python3.10 -m pip install pybind11
+
+##########################################################
+
+RUN \
+mkdir -p $HOME/wheel && \
+cd $HOME/wheel && \
+git clone --single-branch -b marc https://github.com/MarcToussaint/rai.git
 
 ##########################################################
 

@@ -5,10 +5,11 @@ project(cmakereference)
 set(CMAKE_CXX_STANDARD 14 CACHE STRING "C++ version selection")
 
 option(USE_PYBIND "build python bindings" ON)
-option(USE_BULLET "link to bullet" OFF)
+option(USE_BULLET "link to bullet" ON)
 option(USE_OPENCV "link to opencv" OFF)
 option(USE_REALSENSE "link to realsense2 driver library" OFF)
 option(USE_LIBFRANKA "link to libfranka" OFF)
+set(PYBIND11_PYTHON_VERSION 3.7 CACHE STRING "python version")
 
 add_compile_options(
   -O3 -g -w -fPIC -std=c++14 -Wno-terminate
@@ -21,7 +22,8 @@ add_definitions(
   -DRAI_X11 -DRAI_LAPACK -DRAI_EIGEN -DRAI_PTHREAD
   -DRAI_GL
   -DRAI_GLFW -DRAI_QHULL -DRAI_ASSIMP -DNO_CYCLE_DETECTION -DRAI_PNG -DRAI_PLY
-  -DRAI_GJK -DRAI_CCD -DRAI_FCL #-DRAI_SWIFT 
+  -DRAI_GJK -DRAI_CCD -DRAI_FCL #-DRAI_SWIFT
+  -DRAI_NO_STB_IMPL
   )
 
 ################################################################################
@@ -67,7 +69,7 @@ if(USE_BULLET)
   find_package(Bullet REQUIRED)
   add_definitions(-DRAI_BULLET)
   include_directories(${BULLET_INCLUDE_DIRS})
-  target_link_libraries(rai ${BULLET_LIBRARIES})
+#  target_link_libraries(rai ${BULLET_LIBRARIES})
 endif()
 
 if(USE_OPENCV)
@@ -89,11 +91,14 @@ endif()
 ################################################################################
 
 if(USE_PYBIND)
-  set(PYTHON_EXECUTABLE "python3")
+  set(PYTHON_EXECUTABLE "python${PYBIND11_PYTHON_VERSION}")
+  message(STATUS "[rai] using python executable " ${PYTHON_EXECUTABLE} )
   execute_process(
-    COMMAND bash "-c" "python3 -m pybind11 --cmakedir" 
+    COMMAND bash "-c" "${PYTHON_EXECUTABLE} -m pybind11 --cmakedir" 
     OUTPUT_STRIP_TRAILING_WHITESPACE OUTPUT_VARIABLE pybind11_DIR
   )
+  message(STATUS "[rai] using pybind11_DIR " ${pybind11_DIR} )
+  
   find_package(pybind11)
   add_definitions(-DRAI_PYBIND)
 
@@ -105,6 +110,7 @@ if(USE_PYBIND)
     rai
     libjsoncpp.a lapack libcblas.a pthread rt X11 libatlas.a
     libassimp.a libglfw3.a libGLEW.a glut GLU GL png libqhull.a libccd.a libfcl.a
+    ${BULLET_LIBRARIES}
   )
 endif()
 
