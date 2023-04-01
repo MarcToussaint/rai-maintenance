@@ -42,7 +42,7 @@ RUN cd $HOME/git && \
 git clone --single-branch -b 3.08 https://github.com/bulletphysics/bullet3.git
 
 RUN cd $HOME/git/bullet3; mkdir -p build; cd build; \
-  cmake -E env CFLAGS="-fPIC" CXXFLAGS="-fPIC" cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_UNIT_TESTS=OFF -DBUILD_OPENGL3_DEMOS=OFF -DBUILD_BULLET2_DEMOS=OFF -DBUILD_EXTRAS=OFF -DUSE_DOUBLE_PRECISION=ON ..; make install
+  cmake -E env CFLAGS="-fPIC" CXXFLAGS="-fPIC" cmake -DBUILD_SHARED_LIBS=OFF -DBUILD_UNIT_TESTS=OFF -DBUILD_OPENGL3_DEMOS=OFF -DBUILD_BULLET2_DEMOS=OFF -DBUILD_EXTRAS=OFF ..; make install
 
 RUN yum -y install libpng-devel
 
@@ -54,7 +54,8 @@ RUN python3.10 -m pip install pybind11
 RUN \
 mkdir -p $HOME/wheel && \
 cd $HOME/wheel && \
-git clone --single-branch -b marc https://github.com/MarcToussaint/rai.git
+git clone --single-branch -b marc https://github.com/MarcToussaint/rai.git && \
+git clone --single-branch -b master https://github.com/MarcToussaint/rai-robotModels.git
 
 ##########################################################
 

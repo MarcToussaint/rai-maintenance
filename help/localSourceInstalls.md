@@ -149,3 +149,15 @@ export OIIO_LIBRARY_PATH=$HOME/opt/lib
 ../build/bin/cycles --samples 10 --output ./image.png scene_monkey.xml
 ```
 
+
+## graph-tool
+
+git clone https://git.skewed.de/count0/graph-tool.git
+regexxer ' placeholders' -> ' std::placeholders'
+(m) -> (boost::any&(m))
+sudo apt install libcgal-dev
+export PYTHON="python3.8"
+./autogen.sh
+./configure --disable-cairo --disable-sparsehash 
+
+

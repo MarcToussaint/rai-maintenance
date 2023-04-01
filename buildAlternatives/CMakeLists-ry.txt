@@ -70,6 +70,7 @@ if(USE_BULLET)
   add_definitions(-DRAI_BULLET)
   include_directories(${BULLET_INCLUDE_DIRS})
 #  target_link_libraries(rai ${BULLET_LIBRARIES})
+  message(STATUS "[rai] using bullet libs:" ${BULLET_LIBRARIES})
 endif()
 
 if(USE_OPENCV)
@@ -110,7 +111,10 @@ if(USE_PYBIND)
     rai
     libjsoncpp.a lapack libcblas.a pthread rt X11 libatlas.a
     libassimp.a libglfw3.a libGLEW.a glut GLU GL png libqhull.a libccd.a libfcl.a
-    ${BULLET_LIBRARIES}
+    #${BULLET_LIBRARIES}
+    libBullet2FileLoader.a  libBullet3Common.a    libBullet3Geometry.a     libBulletCollision.a  libBulletInverseDynamics.a
+    libBullet3Collision.a   libBullet3Dynamics.a  libBullet3OpenCL_clew.a  libBulletDynamics.a   libBulletSoftBody.a
+    libLinearMath.a 
   )
 endif()
 
