@@ -1,5 +1,5 @@
 cd ../rai
 
 astyle --options=../bin/reformatSources.conf \
-rai/*/*.h rai/*/*.cpp rai/*/*.tpp rai/*/*.cxx \
-rai/*/retired/*.h rai/*/retired/*.cpp rai/*/retired/*.cxx
+src/*/*.h src/*/*.cpp src/*/*.ipp src/*/*.cxx \
+src/*/retired/*.h src/*/retired/*.cpp src/*/retired/*.cxx
